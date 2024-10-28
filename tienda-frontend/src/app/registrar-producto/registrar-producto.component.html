@@ -1,0 +1,49 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Registro de empleado</h3>
+    <form (ngSubmit)="onSubmit()" #productoForm="ngForm">
+        <div class="form-group">
+            <label>Nombre :</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="producto.nombre" name="nombre" required
+                minlength="4" placeholder="Digite su nombre :" #nombre="ngModel">
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <div *ngIf="nombre.errors?.['required']">
+                    Digite el nombre del producto por favor
+                </div>
+                <div *ngIf="nombre.errors?.['minlength']">
+                    El nombre tiene que contener como minimo 4 caracteres
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label>Precio :</label>
+            <input type="number" class="form-control" id="precio" [(ngModel)]="producto.precio" name="precio" required
+                placeholder="Digite el precio :" #precio="ngModel">
+            <div class="alert alert-danger" *ngIf="precio.invalid && (precio.dirty || precio.touched)">
+                <div *ngIf="precio.errors?.['required']">
+                    Digite el precio por favor
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Cantidad :</label>
+            <input type="number" class="form-control" id="cantidad" [(ngModel)]="producto.cantidad" name="email"
+                required placeholder="Digite la cantidad :" #cantidad="ngModel">
+            <div class="alert alert-danger" *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)">
+                <div *ngIf="cantidad.errors?.['required']">
+                    Digite la cantidad por favor
+                </div>
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label>Imagen :</label>
+            <input type="file" class="form-control" id="file" name="file" (change)="handleFilesChanges($event)"
+                required>
+
+        </div>
+
+        <button class="btn btn-success" [disabled]="!productoForm.form.valid">Guardar</button>
+    </form>
+</div>
